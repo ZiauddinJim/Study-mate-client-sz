@@ -1,5 +1,29 @@
-  @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
-  @plugin "daisyui" {
-    themes: all;
-  }
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: corporate --default, forest --prefersdark;
+}
+
+.text-gradient {
+  @apply w-fit text-transparent bg-clip-text bg-linear-to-r from-[#9333EA] to-[#2663EB]
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.my-btn {
+  @apply btn text-white border-none bg-linear-to-r from-[#9333EA] to-[#2663EB] hover:brightness-110 active:scale-95
+}
+
+[data-theme="corporate"] {
+  --color-primary: #9333EA;
+  --color-secondary: #2663EB;
+}
+
+[data-theme="forest"] {
+  --color-primary: #9333EA;
+  --color-secondary: #2663EB;
+}
