@@ -1,10 +1,13 @@
-import React from "react";
+import React, { } from "react";
 import { Link } from "react-router";
 import TextType from '../Components/CreateProfile/TextType';
-
-
+import useAuth from "../Hooks/useAuth";
+import Spinner from "../Spinner/Spinner";
 
 const CreateProfile = () => {
+    const { loading } = useAuth()
+    if (loading) return <Spinner />;
+
     return (
         <div className="my-12 px-4">
             <div className="max-w-4xl mx-auto">
@@ -17,7 +20,7 @@ const CreateProfile = () => {
                         typingSpeed={75}
                         pauseDuration={1500}
                         showCursor={true}
-                        cursorCharacter="|"
+                        cursorCharacter="_"
                     />
                 </div>
 
@@ -40,7 +43,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Email (read-only)</span>
                                     </label>
-                                    <input type="email" placeholder="xyz@example.com" readOnly className="input input-bordered input-disabled w-full bg-base-200" />
+                                    <input type="email" placeholder="xyz@example.com" readOnly className="input focus:border-secondary outline-none w-full bg-base-200" />
                                 </div>
 
                                 {/* Profile Image URL */}
@@ -48,7 +51,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Profile Image URL</span>
                                     </label>
-                                    <input type="url" placeholder="https://example.com/avatar.jpg" className="input input-bordered w-full" />
+                                    <input type="url" placeholder="https://example.com/avatar.jpg" className="input focus:border-secondary outline-none w-full" />
                                 </div>
 
                                 {/* Subject */}
@@ -56,7 +59,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Subject</span>
                                     </label>
-                                    <input type="text" placeholder="e.g., English, Math, Programming" className="input input-bordered w-full" />
+                                    <input type="text" placeholder="e.g., English, Math, Programming" className="input focus:border-secondary outline-none w-full" />
                                 </div>
 
                                 {/* Study Mode */}
@@ -76,7 +79,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Availability Time</span>
                                     </label>
-                                    <input type="text" placeholder="e.g., Evening 6-9 PM" className="input input-bordered w-full" />
+                                    <input type="text" placeholder="e.g., Evening 6-9 PM" className="input focus:border-secondary outline-none w-full" />
                                 </div>
 
                                 {/* Location */}
@@ -84,7 +87,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Location</span>
                                     </label>
-                                    <input type="text" placeholder="City, area, or preferred location" className="input input-bordered w-full" />
+                                    <input type="text" placeholder="City, area, or preferred location" className="input focus:border-secondary outline-none w-full" />
                                 </div>
 
                                 {/* Experience Level */}
@@ -105,7 +108,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Rating</span>
                                     </label>
-                                    <input type="number" min="0" max="5" step="0.1" placeholder="0 - 5" className="input input-bordered w-full" />
+                                    <input type="number" min="0" max="5" step="0.1" placeholder="0 - 5" className="input focus:border-secondary outline-none w-full" />
                                 </div>
 
                                 {/* Partner Count */}
@@ -113,7 +116,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Partner / Connections Count</span>
                                     </label>
-                                    <input type="number" min="0" placeholder="0" readOnly className="input input-bordered w-full" />
+                                    <input type="number" min="0" placeholder="0" readOnly className="input focus:border-secondary outline-none w-full" />
                                 </div>
 
                             </div>

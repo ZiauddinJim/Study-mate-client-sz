@@ -7,9 +7,18 @@ import { RiMenu2Line } from "react-icons/ri";
 import logo from "../assets/logo.png"
 import useAuth from '../Hooks/useAuth';
 import toast from 'react-hot-toast';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+
 const Navbar = () => {
     const { user, signOutFun } = useAuth()
     // console.log(user);
+    useEffect(() => {
+        Aos.init({
+            duration: 1000,
+            easing: 'ease-in-out'
+        })
+    }, []);
     // theme use
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "corporate");
     useEffect(() => {
@@ -49,7 +58,7 @@ const Navbar = () => {
     return (
         <div className='bg-base-100 shadow-lg'>
             <Container className={'navbar'}>
-                <div className="navbar-start">
+                <div className="navbar-start" data-aos="fade-right">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <RiMenu2Line />
@@ -66,7 +75,7 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                <div className="navbar-end gap-3">
+                <div className="navbar-end gap-3" data-aos="fade-left">
                     {/* Button */}
                     <div className="hidden lg:flex">
                         <ul className="menu menu-horizontal px-1 gap-2">

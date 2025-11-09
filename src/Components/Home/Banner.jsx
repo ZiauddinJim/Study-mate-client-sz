@@ -32,7 +32,7 @@ const Banner = () => {
             <Swiper
                 pagination={{ dynamicBullets: true }}
                 autoplay={{
-                    delay: 3000,
+                    delay: 5000,
                     disableOnInteraction: false,
                 }}
                 loop={true}
@@ -80,7 +80,7 @@ const Banner = () => {
             }
           }
           .swiper-slide-active .animate-slide-up {
-            animation: slideUp 1s ease forwards;
+            animation: slideUp 2s ease forwards;
           }
         `}
             </style>

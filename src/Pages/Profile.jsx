@@ -48,7 +48,6 @@ const Profile = () => {
                             />
                         </div>
                     </div>
-
                     <h2 className="mt-4 text-2xl font-bold">{formatDisplayName(name)}</h2>
                     <p className="mt-1 text-sm opacity-90">Learner · Achiever</p>
 
