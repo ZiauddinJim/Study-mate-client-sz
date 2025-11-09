@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import logo from "../assets/logo.png"
 import useAuth from '../Hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { MdOutlineMail } from "react-icons/md";
@@ -7,18 +6,66 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import Container from '../MyComponents/Container';
 import toast from 'react-hot-toast';
+import { BsEye } from "react-icons/bs";
 
 const Login = () => {
-    const { googleSignInFun, setLoading } = useAuth();
+    const { googleSignInFun, setLoading, signInFun, setEmail } = useAuth();
     const emailRef = useRef();
     const [show, setShow] = useState(false)
     const location = useLocation()
     const navigate = useNavigate()
 
-    const handleSignIn = () => {
+    const handleSignIn = (e) => {
+        e.preventDefault();
+        // console.log("Click");
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        // console.log({ email, password });
 
+        signInFun(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                toast.success(`Welcome back, ${user.displayName}!`);
+                // console.log(user);
+                navigate(`${location.state ? location.state : '/'}`) // if using react-router
+                e.target.reset();
+            })
+            .catch((error) => {
+                // Handling all Firebase auth errors
+                let message = '';
+                switch (error.code) {
+                    case 'auth/invalid-email':
+                        message = 'Invalid email address!';
+                        break;
+                    case 'auth/user-disabled':
+                        message = 'This user has been disabled!';
+                        break;
+                    case 'auth/user-not-found':
+                        message = 'No user found with this email!';
+                        break;
+                    case 'auth/wrong-password':
+                        message = 'Incorrect password!';
+                        break;
+                    case 'auth/invalid-credential':
+                        message = 'Incorrect email or password!';
+                        break;
+                    case 'auth/network-request-failed':
+                        message = 'Network error! Please check your internet connection and try again.';
+                        break;
+                    default:
+                        message = 'Something went wrong. Please try again!';
+                }
+                toast.error(message);
+                // console.error(error);
+            });
     }
     const handleForgetPassword = () => {
+        // console.log(emailRef.current.value);
+        const emailValue = emailRef.current?.value;
+        setEmail(emailValue);
+        navigate("/forgetPassword");
+
 
     }
     const handleGoogle = () => {

@@ -5,18 +5,18 @@ import { Link } from "react-router";
 import userIcon from "../assets/user.png"
 import toast from "react-hot-toast";
 
-const getInitials = (name) => {
-    if (!name) return "";
-    const parts = name.trim().split(/\s+/).filter(Boolean);
-    const initials = parts
-        .map(p => Array.from(p)[0])
-        .slice(0, 2)
-        .join("");
-    return initials.toUpperCase();
-};
 
-const formatDisplayName = (name) =>
-    name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+
+const formatDisplayName = (name) => {
+    console.log(name.charAt(0).toUpperCase());
+    // return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+    return name
+        .split(' ')
+        .filter(word => word.trim().length > 0)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
+}
+
 
 const Profile = () => {
     const { user, signOutFun } = useAuth();
@@ -41,21 +41,15 @@ const Profile = () => {
                 <div className="flex flex-col items-center justify-center p-8 bg-linear-to-br from-primary to-secondary text-white w-full lg:w-1/3">
                     <div className="avatar">
                         <div className="w-40 h-40 rounded-full ring ring-offset-4 ring-white shadow-xl bg-base-200">
-                            {photo ? (
-                                <img
-                                    src={photo}
-                                    alt={`${name} profile`}
-                                    className="object-cover w-full h-full rounded-full"
-                                />
-                            ) : (
-                                <div className="flex items-center justify-center w-full h-full text-4xl font-bold text-primary-content">
-                                    {formatDisplayName(name)}
-                                </div>
-                            )}
+                            <img
+                                src={photo}
+                                alt={`${name} profile`}
+                                className="object-cover w-full h-full rounded-full"
+                            />
                         </div>
                     </div>
 
-                    <h2 className="mt-4 text-2xl font-bold">{name}</h2>
+                    <h2 className="mt-4 text-2xl font-bold">{formatDisplayName(name)}</h2>
                     <p className="mt-1 text-sm opacity-90">Learner · Achiever</p>
 
                     <div className="mt-6 flex gap-2 justify-center">

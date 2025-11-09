@@ -8,10 +8,13 @@ import useAuth from '../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import firebaseSignUpErrorHandle from '../Utils/firebaseSignUpErrorHandle';
 
+
 const Register = () => {
     const navigate = useNavigate()
     const location = useLocation()
-    const { googleSignInFun, setLoading } = useAuth();
+    const { googleSignInFun, setLoading,
+        createUserSignInWithEmailFun,
+        updateProfileFun, user } = useAuth();
     const [show, setShow] = useState(false)
 
     // Password validation regex
@@ -63,14 +66,9 @@ const Register = () => {
                 // Update profile
                 updateProfileFun(displayName, photoURL)
                     .then(() => {
-                        // signOut
-                        signOutFun()
-                            .then(() => {
-                                toast.success("Signup successful. Continue with Login.");
-                                e.target.reset();
-                                setUser(null)
-                                navigate("/auth/login");
-                            })
+                        toast.success(`Signup successful. Welcome  ${user.displayName || 'User'}!`);
+                        e.target.reset();
+                        navigate(`${location.state ? location.state : '/'}`)
                     })
             })
             .catch(firebaseSignUpErrorHandle)
@@ -82,7 +80,7 @@ const Register = () => {
                 <form onSubmit={handleRegister}>
                     {/* Top */}
                     <div className="mb-12">
-                        <h1 className="text-3xl font-black text-primary text-center mt-20">Join My Website Today</h1>
+                        <h1 className="text-3xl font-black  text-center mt-20">Join <span className='text-secondary'>Study Mate - </span> <br /> Start Learning Smarter</h1>
                     </div>
                     {/* Name */}
                     <div>

@@ -9,7 +9,7 @@ import useAuth from '../Hooks/useAuth';
 import toast from 'react-hot-toast';
 const Navbar = () => {
     const { user, signOutFun } = useAuth()
-    console.log(user);
+    // console.log(user);
     // theme use
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "corporate");
     useEffect(() => {

@@ -9,6 +9,7 @@ import PrivateRoute from '../Context/PrivateRoute';
 import MyConnections from '../Pages/MyConnections';
 import CreateProfile from '../Pages/CreateProfile';
 import Profile from '../Pages/Profile';
+import ForgetPassword from '../Pages/ForgetPassword';
 
 const Root = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const Root = createBrowserRouter([
             {
                 path: "/register",
                 Component: Register,
+            },
+            {
+                path: "/forgetPassword",
+                Component: ForgetPassword,
             },
             {
                 path: "/myConnection",
