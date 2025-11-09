@@ -55,8 +55,7 @@ const Banner = () => {
                             {/* Text Content */}
                             <div
                                 className="absolute bottom-20 left-10 md:left-20 text-white
-                animate-slide-up opacity-0"
-                            >
+                                animate-slide-up opacity-0">
                                 <h2 className="text-3xl md:text-5xl font-bold mb-2">
                                     {slide.title}
                                 </h2>
