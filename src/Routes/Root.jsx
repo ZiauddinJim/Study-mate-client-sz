@@ -3,6 +3,12 @@ import { createBrowserRouter } from 'react-router';
 import Layout from '../Layouts/Layout';
 import Home from '../Pages/Home';
 import FindPartners from '../Pages/FindPartners';
+import Login from '../Pages/Login';
+import Register from '../Pages/Register';
+import PrivateRoute from '../Context/PrivateRoute';
+import MyConnections from '../Pages/MyConnections';
+import CreateProfile from '../Pages/CreateProfile';
+import Profile from '../Pages/Profile';
 
 const Root = createBrowserRouter([
     {
@@ -17,7 +23,34 @@ const Root = createBrowserRouter([
             {
                 path: "/findPartners",
                 Component: FindPartners,
-            }
+            },
+            {
+                path: "/login",
+                Component: Login,
+            },
+            {
+                path: "/register",
+                Component: Register,
+            },
+            {
+                path: "/myConnection",
+                element: <PrivateRoute>
+                    <MyConnections />
+                </PrivateRoute>
+            },
+            {
+                path: "/createPartner",
+                element: <PrivateRoute>
+                    <CreateProfile />
+                </PrivateRoute>
+            },
+            {
+                path: "/profile",
+                element: <PrivateRoute>
+                    <Profile />
+                </PrivateRoute>
+            },
+
         ]
     }
 ])

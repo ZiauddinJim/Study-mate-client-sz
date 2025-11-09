@@ -19,11 +19,11 @@ body {
 }
 
 [data-theme="corporate"] {
-  --color-primary: #9333EA;
-  --color-secondary: #2663EB;
+  --color-primary: #2663EB;
+  --color-secondary: #9333EA;
 }
 
 [data-theme="forest"] {
-  --color-primary: #9333EA;
-  --color-secondary: #2663EB;
+  --color-primary: #2663EB;
+  --color-secondary: #9333EA;
 }
