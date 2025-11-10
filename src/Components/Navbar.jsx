@@ -45,7 +45,6 @@ const Navbar = () => {
         <li><MyLink to={"/"}>Home</MyLink></li>
         <li><MyLink to={"findPartners"}>Find Partners</MyLink></li>
         {
-
             user &&
             <>
                 <li><MyLink to={"/createPartner"}>Create Partner Profile</MyLink></li>
@@ -56,16 +55,14 @@ const Navbar = () => {
 
 
     return (
-        <div className='bg-base-100 shadow-lg'>
-            <Container className={'navbar'}>
+        <div className="bg-base-100 shadow-lg sticky top-0 z-50">
+            <Container className={"navbar min-h-16"}>
                 <div className="navbar-start" data-aos="fade-right">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <div tabIndex={0} role="button" aria-label="Open menu" className="btn btn-ghost lg:hidden">
                             <RiMenu2Line />
                         </div>
-                        <ul
-                            tabIndex="-1"
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        <ul tabIndex="-1" className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow">
                             {links}
                         </ul>
                     </div>
@@ -108,8 +105,8 @@ const Navbar = () => {
                     }
 
                 </div>
-            </Container>
-        </div>
+            </Container >
+        </div >
     );
 };
 

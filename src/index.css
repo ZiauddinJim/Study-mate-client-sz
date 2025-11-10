@@ -27,7 +27,9 @@ body {
   --color-secondary: #9333EA;
 
   .partner-details {
-    @apply bg-primary-50
+    /* background-color: rgba(128, 0, 128, 0.016); */
+    /* opacity: 20; */
+    /* @apply bg-purple-50 */
   }
 }
 
@@ -36,6 +38,7 @@ body {
   --color-secondary: #9333EA;
 
   .partner-details {
-    @apply bg-secondary
+    /* background-color: rgba(0, 5, 109, 0.153); */
+    /* @apply bg-black/70 */
   }
 }

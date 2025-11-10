@@ -122,7 +122,7 @@ const Login = () => {
 
                     {/* Forget password */}
                     <div className="mt-8">
-                        <button onClick={handleForgetPassword} className="text-secondary font-medium text-sm hover:underline cursor-pointer">
+                        <button onClick={handleForgetPassword} type='button' className="text-secondary font-medium text-sm hover:underline cursor-pointer">
                             Forgot Password?
                         </button>
                     </div>

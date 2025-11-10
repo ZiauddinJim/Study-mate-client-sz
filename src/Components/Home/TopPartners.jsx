@@ -20,7 +20,7 @@ const TopPartners = () => {
         <Container className={'mb-20'}>
             <div className='flex justify-center'>
                 <TextType
-                    className="text-4xl font-extrabold text-gradient"
+                    className="lg:text-4xl md:text-3xl text-2xl font-extrabold text-gradient mx-3 lg:mx-auto"
                     text={[
                         "Top Rated Study Partner",
                         "Top Rated Study Partner",
@@ -30,7 +30,7 @@ const TopPartners = () => {
                     showCursor={true}
                 />
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-10 gap-10 mx-5 lg:mx-auto'>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-10 px-3 sm:px-5 lg:px-10">
                 {
                     data.map(data => <TopPartnerCard key={data._id} data={data} />)
                 }
