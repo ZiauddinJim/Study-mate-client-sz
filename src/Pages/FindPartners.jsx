@@ -54,7 +54,11 @@ const FindPartners = () => {
     }
     const handleSearch = async (e) => {
         e.preventDefault();
-       
+        const search = e.target.search.value.trim();
+        // console.log(search);
+        const result = await Axios.get(`/search?search=${search}`)
+        console.log(result.data);
+        setData(result.data)
     }
 
 
