@@ -51,12 +51,14 @@ const CreateProfile = () => {
                 <div className="flex flex-col items-start gap-4 mb-6">
                     <Link to={"/findPartners"} className="my-btn text-primary hover:underline" > ← Back To Find Partner</Link>
                     <TextType
-                        className="text-4xl font-extrabold bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent"
-                        text={["Create Partner Profile"]}
+                        className="text-4xl font-extrabold text-gradient bg-clip-text text-transparent"
+                        text={[
+                            "Create Partner Profile",
+                            "Create Partner Profile"
+                        ]}
                         typingSpeed={75}
-                        pauseDuration={1500}
+                        pauseDuration={5000}
                         showCursor={true}
-                        cursorCharacter="_"
                     />
                 </div>
 
@@ -71,7 +73,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Full Name</span>
                                     </label>
-                                    <input name="name" type="text" placeholder="Your partner name" className="input focus:border-secondary outline-none w-full" />
+                                    <input name="name" required type="text" placeholder="Your partner name" className="input focus:border-secondary outline-none w-full" />
                                 </div>
 
                                 {/* Email read-only */}
@@ -87,7 +89,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Profile Image URL</span>
                                     </label>
-                                    <input type="url" name="ProfileImage" placeholder="https://example.com/avatar.jpg" className="input focus:border-secondary outline-none w-full" />
+                                    <input type="url" required name="ProfileImage" placeholder="https://example.com/avatar.jpg" className="input focus:border-secondary outline-none w-full" />
                                 </div>
 
                                 {/* Subject */}
@@ -95,7 +97,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Subject</span>
                                     </label>
-                                    <input name="subject" type="text" placeholder="e.g., English, Math, Programming" className="input focus:border-secondary outline-none w-full" />
+                                    <input name="subject" required type="text" placeholder="e.g., English, Math, Programming" className="input focus:border-secondary outline-none w-full" />
                                 </div>
 
                                 {/* Study Mode */}
@@ -115,7 +117,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Availability Time</span>
                                     </label>
-                                    <input name="availabilityTime" type="text" placeholder="e.g., Evening 6-9 PM" className="input focus:border-secondary outline-none w-full" />
+                                    <input name="availabilityTime" required type="text" placeholder="e.g., Evening 6-9 PM" className="input focus:border-secondary outline-none w-full" />
                                 </div>
 
                                 {/* Location */}
@@ -123,7 +125,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Location</span>
                                     </label>
-                                    <input name="location" type="text" placeholder="City, area, or preferred location" className="input focus:border-secondary outline-none w-full" />
+                                    <input name="location" type="text" required placeholder="City, area, or preferred location" className="input focus:border-secondary outline-none w-full" />
                                 </div>
 
                                 {/* Experience Level */}
@@ -144,7 +146,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Rating</span>
                                     </label>
-                                    <input name="rating" type="number" min="0" max="5" step="1" placeholder="0 - 5" className="input focus:border-secondary outline-none w-full" />
+                                    <input name="rating" required type="number" min="0" max="5" step="1" placeholder="0 - 5" className="input focus:border-secondary outline-none w-full" />
                                 </div>
 
                                 {/* Partner Count */}
@@ -159,7 +161,7 @@ const CreateProfile = () => {
 
                             {/* Actions */}
                             <div className="flex justify-end gap-3">
-                                <button type="reset" className="btn btn-primary">Reset</button>
+                                <button type="reset" className="btn btn-primary text-white">Reset</button>
                                 <button type="submit" className="my-btn">Create Partner Profile</button>
                             </div>
                         </form>
