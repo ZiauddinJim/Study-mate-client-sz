@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router';
-import { FaLongArrowAltRight, FaStar } from "react-icons/fa";
+import React, { useState } from "react";
+import { Link } from "react-router";
+import { FaLongArrowAltRight } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
-const TopPartnerCard = ({ data }) => {
-    // console.log(data);
+const FindPartnerCard = ({ data }) => {
     const [isHover, setIsHover] = useState(false);
 
-    const { _id, rating, name, subject, experienceLevel, ProfileImage } = data
-
+    const { _id, name, subject, studyMode, experienceLevel, ProfileImage } = data;
 
     return (
         <motion.div
-            className={`p-10 rounded-3xl bg-base-100 shadow-lg ${_id && "hover:drop-shadow-xl"} border border-secondary transition-all duration-300 flex flex-col items-center text-center`}
+            className="p-6 md:p-8 rounded-3xl bg-base-100 shadow-md border border-secondary hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
-            whileHover={{ scale: 1.03 }}>
+            whileHover={{ scale: 1.03 }}
+        >
             {/* Profile Image */}
             <div className="avatar mb-4">
                 <div className="ring-primary ring-offset-base-100 w-28 md:w-36 rounded-full ring-offset-2 ring-2">
@@ -24,23 +23,25 @@ const TopPartnerCard = ({ data }) => {
                 </div>
             </div>
 
-            <div className='font-black text-2xl my-3 text-gradient'>{name}</div>
+            {/* Name */}
+            <h2 className="font-bold text-xl md:text-2xl text-gradient mb-2">{name}</h2>
 
-            <div className='badge badge-outline border-secondary'><strong className='text-primary'>Subject:</strong>{subject}</div>
-            <div className='badge badge-outline border-secondary my-3'>{experienceLevel}</div>
-
-
-            {/* Rating */}
-            <div className='flex items-center mb-3'>
-                {[...Array(5)].map((_, index) => {
-                    const starValue = index + 1;
-                    return (
-                        <FaStar key={index} size={20} className="mr-1"
-                            color={starValue <= rating ? "#9333EA" : "#E4E5E9"} />
-                    );
-                })}
+            {/* Subject */}
+            <div className="badge badge-outline border-secondary mb-2">
+                <strong className="text-primary mr-1">Subject:</strong> {subject}
             </div>
 
+            {/* Study Mode */}
+            <div className="badge badge-outline border-secondary mb-2">
+                <strong className="text-primary mr-1">Study Mode:</strong> {studyMode}
+            </div>
+
+            {/* Experience Level */}
+            <div className="badge badge-outline border-secondary mb-4">
+                {experienceLevel}
+            </div>
+
+            {/* View Profile Button */}
             <Link to={`/partnerDetails/${_id}`}
                 className="flex items-center gap-2 text-secondary font-medium w-fit">
                 <AnimatePresence mode="wait">
@@ -66,9 +67,8 @@ const TopPartnerCard = ({ data }) => {
                     )}
                 </AnimatePresence>
             </Link>
-
         </motion.div>
     );
 };
 
-export default TopPartnerCard;
+export default FindPartnerCard;
