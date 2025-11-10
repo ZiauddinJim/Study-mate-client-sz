@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TextType from '../CreateProfile/TextType';
 import Container from '../../MyComponents/Container';
+import TopPartnerCard from './TopPartnerCard';
+import useAxios from '../../Hooks/useAxios';
 
 
 const TopPartners = () => {
+    const Axios = useAxios()
+    const [data, setData] = useState([])
+    useEffect(() => {
+        Axios.get("/top-partner")
+            .then(data => {
+                // console.log(data.data);
+                const partner = data.data
+                setData(partner)
+            })
+    }, [Axios])
     return (
         <Container className={'mb-20'}>
             <div className='flex justify-center'>
@@ -19,6 +31,12 @@ const TopPartners = () => {
                     showCursor={true}
                     loop={true}
                 />
+            </div>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-10 gap-10'>
+                {
+                    data.map(data => <TopPartnerCard key={data._id} data={data} />)
+                }
+
             </div>
         </Container>
     );

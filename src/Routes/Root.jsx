@@ -10,6 +10,8 @@ import MyConnections from '../Pages/MyConnections';
 import CreateProfile from '../Pages/CreateProfile';
 import Profile from '../Pages/Profile';
 import ForgetPassword from '../Pages/ForgetPassword';
+import PartnerDetails from '../Pages/PartnerDetails';
+// import PartnerDetails from '../Pages/PartnerDetails';
 
 const Root = createBrowserRouter([
     {
@@ -53,6 +55,12 @@ const Root = createBrowserRouter([
                 path: "/profile",
                 element: <PrivateRoute>
                     <Profile />
+                </PrivateRoute>
+            },
+            {
+                path: "/partnerDetails/:id",
+                element: <PrivateRoute>
+                    <PartnerDetails />
                 </PrivateRoute>
             },
 

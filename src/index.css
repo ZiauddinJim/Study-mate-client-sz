@@ -10,6 +10,10 @@
   @apply w-fit text-transparent bg-clip-text bg-linear-to-r from-[#9333EA] to-[#2663EB]
 }
 
+.bg-gradient {
+  @apply bg-linear-to-r from-[#9333EA] to-[#2663EB]
+}
+
 body {
   font-family: "Lato", sans-serif;
 }
@@ -21,9 +25,17 @@ body {
 [data-theme="corporate"] {
   --color-primary: #2663EB;
   --color-secondary: #9333EA;
+
+  .partner-details {
+    @apply bg-primary-50
+  }
 }
 
 [data-theme="forest"] {
   --color-primary: #2663EB;
   --color-secondary: #9333EA;
+
+  .partner-details {
+    @apply bg-secondary
+  }
 }
