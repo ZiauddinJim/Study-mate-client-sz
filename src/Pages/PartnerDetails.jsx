@@ -5,22 +5,24 @@ import useAxios from "../Hooks/useAxios";
 import { useParams } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const PartnerDetails = () => {
     const { id } = useParams()
     const Axios = useAxios()
     const { user } = useAuth()
+    const AxiosSecure = useAxiosSecure()
     const [refetch, setRefetch] = useState(false)
     // console.log(user.displayName);
     const [partner, setPartner] = useState([])
 
     useEffect(() => {
-        Axios.get(`/partner/${id}`)
+        AxiosSecure.get(`/partner/${id}`)
             .then(data => {
                 // console.log(data.data);
                 setPartner(data.data)
             })
-    }, [Axios, id, refetch])
+    }, [AxiosSecure, id, refetch])
 
     const { ProfileImage, name, email,
         rating, subject, availabilityTime,

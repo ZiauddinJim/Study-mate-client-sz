@@ -12,7 +12,7 @@ const MyConnections = () => {
     useEffect(() => {
         Axios.get(`/my-connection?email=${user.email}`,)
             .then(data => {
-                console.log(data.data);
+                // console.log(data.data);
                 setData(data.data)
             })
     }, [Axios, user])
