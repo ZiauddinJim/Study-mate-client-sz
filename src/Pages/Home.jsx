@@ -6,6 +6,8 @@ import 'aos/dist/aos.css';
 import useAuth from '../Hooks/useAuth';
 import Spinner from '../Spinner/Spinner';
 import TopPartners from '../Components/Home/TopPartners';
+import HowItWorks from '../Components/Home/HowItWorks';
+import Testimonials from '../Components/Home/Testimonials';
 
 const Home = () => {
     const { setLoading, loading } = useAuth()
@@ -32,6 +34,12 @@ const Home = () => {
             <main>
                 <div>
                     <TopPartners />
+                </div>
+                <div>
+                    <HowItWorks />
+                </div>
+                <div>
+                    <Testimonials />
                 </div>
             </main>
             {/* <SplashCursor /> */}

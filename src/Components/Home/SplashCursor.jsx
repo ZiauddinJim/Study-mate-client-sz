@@ -894,7 +894,7 @@ function SplashCursor({
             const mix = (a, b) => a * (1 - t) + b * t;
 
             // Approximate 40% opacity by scaling intensity
-            const opacity = 0.1;
+            const opacity = 0.02;
 
             return {
                 r: mix(colorA.r, colorB.r) * opacity,

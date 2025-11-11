@@ -3,13 +3,13 @@ import { Link } from "react-router";
 import TextType from '../Components/CreateProfile/TextType';
 import useAuth from "../Hooks/useAuth";
 import Spinner from "../Spinner/Spinner";
-import useAxios from "../Hooks/useAxios";
 import Swal from 'sweetalert2';
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 
 const CreateProfile = () => {
     const { loading, user } = useAuth()
-    const Axios = useAxios();
+    const Axios = useAxiosSecure();
     if (loading) return <Spinner />;
 
     const handleSubmit = (e) => {

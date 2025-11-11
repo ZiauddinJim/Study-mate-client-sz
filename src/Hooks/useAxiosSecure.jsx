@@ -15,7 +15,7 @@ const useAxiosSecure = () => {
     useEffect(() => {
         // Request interceptor
         const instanceRequest = instance.interceptors.request.use((config) => {
-            const token = user?.accessToken;
+            const token = user.accessToken;
             if (token) {
                 config.headers.Authorization = `Bearer ${token}`;
             }
