@@ -25,19 +25,21 @@ body {
 [data-theme="corporate"] {
   --color-primary: #2663EB;
   --color-secondary: #9333EA;
+  --color-accent: gray;
 
 
 
   /* .partner-details {
     background-color: rgba(128, 0, 128, 0.016); */
-    /* opacity: 20; */
-    /* @apply bg-purple-50
+  /* opacity: 20; */
+  /* @apply bg-purple-50
   } */
 }
 
 [data-theme="forest"] {
   --color-primary: #2663EB;
   --color-secondary: #9333EA;
+  --color-accent: gray;
 
   /* .partner-details {
     background-color: rgba(0, 5, 109, 0.153);

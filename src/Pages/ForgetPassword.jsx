@@ -55,11 +55,11 @@ const ForgetPassword = () => {
                         <div>
                             <label className="label-text">Email address*</label>
                             <div className="relative flex items-center">
-                                <input name="email" ref={emailRef} type="text" required className="w-full text-slate-700 text-sm border-b border-slate-300 focus:border-secondary pl-2 pr-8 py-3 outline-none" placeholder="Enter email" />
-                                <MdOutlineMail className='text-slate-500' />
+                                <input name="email" ref={emailRef} type="text" required className="w-full text-sm border-b border-slate-300 focus:border-secondary pl-2 pr-8 py-3 outline-none" placeholder="Enter email" />
+                                <MdOutlineMail />
                             </div>
                         </div>
-                        <button type='submit' className="btn btn-lg btn-primary btn-gradient btn-block">Send Reset Link</button>
+                        <button type='submit' className="btn btn-lg btn-primary text-white btn-gradient btn-block">Send Reset Link</button>
                     </form>
 
                     <div className="flex justify-center">

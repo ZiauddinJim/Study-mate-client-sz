@@ -11,6 +11,7 @@ import CreateProfile from '../Pages/CreateProfile';
 import Profile from '../Pages/Profile';
 import ForgetPassword from '../Pages/ForgetPassword';
 import PartnerDetails from '../Pages/PartnerDetails';
+import Error404 from '../Error/Error404';
 // import PartnerDetails from '../Pages/PartnerDetails';
 
 const Root = createBrowserRouter([
@@ -63,6 +64,10 @@ const Root = createBrowserRouter([
                     <PartnerDetails />
                 </PrivateRoute>
             },
+            {
+                path: "*",
+                Component: Error404
+            }
 
         ]
     }

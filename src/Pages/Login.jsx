@@ -97,7 +97,7 @@ const Login = () => {
                     {/* Top */}
                     <div className="mb-12 text-center">
                         <h1 className="text-2xl font-black mt-5 text-primary">Log in to your Account</h1>
-                        <p className='text-gray-500 mt-2'>Enter your email below <br /> to login to your account</p>
+                        <p className='text-accent mt-2'>Enter your email below <br /> to login to your account</p>
                     </div>
 
                     {/* Email */}
@@ -129,12 +129,12 @@ const Login = () => {
 
                     {/* Button */}
                     <div className="mt-12">
-                        <button type="submit" className="btn hover:btn-primary border-primary w-full shadow font-medium">
+                        <button type="submit" className="btn hover:btn-primary hover:text-white border-primary w-full shadow font-medium">
                             Sign in
                         </button>
                     </div>
                 </form>
-                <h3 className="text-[15px] mt-6 text-slate-600">Don't have an account <Link to={"/register"} className="text-secondary font-medium hover:underline ml-1 whitespace-nowrap">Register here</Link></h3>
+                <h3 className="text-[15px] mt-6">Don't have an account <Link to={"/register"} className="text-secondary font-medium hover:underline ml-1 whitespace-nowrap">Register here</Link></h3>
 
                 {/* OR */}
                 <div className="my-6 flex items-center gap-4">
@@ -144,7 +144,7 @@ const Login = () => {
                 </div>
 
                 {/* Google */}
-                <button onClick={handleGoogle} className="btn hover:btn-primary font-medium border-primary shadow w-full">
+                <button onClick={handleGoogle} className="btn hover:btn-primary hover:text-white font-medium border-primary shadow w-full">
                     <FcGoogle />
                     Signin with Google
                 </button>

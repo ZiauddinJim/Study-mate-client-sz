@@ -7,6 +7,7 @@ import { BsEye } from "react-icons/bs";
 import useAuth from '../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import firebaseSignUpErrorHandle from '../Utils/firebaseSignUpErrorHandle';
+import TextType from '../Components/CreateProfile/TextType';
 
 
 const Register = () => {
@@ -49,38 +50,56 @@ const Register = () => {
             })
             .finally(() => setLoading(false));
     }
-    const handleRegister = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
         const form = e.target;
-        const displayName = form.name.value;
-        const photoURL = form.photoURL.value;
-        const email = form.email.value;
+        const displayName = form.name.value.trim();
+        const photoURL = form.photoURL.value.trim();
+        const email = form.email.value.trim();
         const password = form.password.value;
         const passwordError = validatePassword(password);
+
         if (passwordError) {
             toast.error(passwordError);
+            setLoading(false)
             return;
         }
-        createUserSignInWithEmailFun(email, password)
-            .then(() => {
-                // Update profile
-                updateProfileFun(displayName, photoURL)
-                    .then(() => {
-                        toast.success(`Signup successful. Welcome  ${user.displayName || 'User'}!`);
-                        e.target.reset();
-                        navigate(`${location.state ? location.state : '/'}`)
-                    })
-            })
-            .catch(firebaseSignUpErrorHandle)
-            .finally(() => setLoading(false));
+        try {
+            // Create user
+            const userCredential = await createUserSignInWithEmailFun(email, password)
+            const newUser = userCredential.user;
+            // Update user
+            await updateProfileFun(displayName, photoURL)
+            // toast
+            toast.success(`Signup successful. Welcome  ${newUser.displayName || 'User'}!`);
+            // navigate route
+            navigate(`${location.state || '/'}`)
+            // rest form
+            form.reset();
+        } catch (error) {
+            firebaseSignUpErrorHandle(error)
+        }
+        finally {
+            setLoading(false)
+        };
     }
     return (
         <div className='flex flex-col justify-center items-center mb-20'>
             <div className="md:max-w-md w-full px-4 py-4">
                 <form onSubmit={handleRegister}>
                     {/* Top */}
-                    <div className="mb-12">
-                        <h1 className="text-3xl font-black  text-center mt-20">Join <span className='text-secondary'>Study Mate - </span> <br /> Start Learning Smarter</h1>
+                    <div className="mb-12 mt-20 flex justify-center">
+                        {/* <h1 className="text-3xl font-black text-center">Join <span className='text-secondary'>Study Mate - </span> <br /> Start Learning Smarter</h1> */}
+                        <TextType
+                            className="lg:text-4xl text-3xl font-extrabold text-gradient mx-3 lg:mx-auto"
+                            text={[
+                                "Welcome Study Mate ",
+                                "Welcome Study Mate ",
+                            ]}
+                            typingSpeed={75}
+                            pauseDuration={5000}
+                            showCursor={true}
+                        />
                     </div>
                     {/* Name */}
                     <div>
@@ -125,7 +144,7 @@ const Register = () => {
 
                     {/* Button */}
                     <div className="mt-12">
-                        <button type="submit" className="btn hover:btn-primary border-primary w-full shadow font-medium">
+                        <button type="submit" className="btn hover:btn-primary text-white border-primary w-full shadow font-medium">
                             Register Now
                         </button>
                     </div>
@@ -134,11 +153,11 @@ const Register = () => {
                 {/* OR */}
                 <div className="my-6 flex items-center gap-4">
                     <hr className="w-full border-slate-300" />
-                    <p className="text-sm text-slate-900 text-center">or</p>
+                    <p className="text-sm  text-center">or</p>
                     <hr className="w-full border-slate-300" />
                 </div>
                 {/* Google */}
-                <button onClick={handleGoogle} className="btn hover:btn-primary font-medium border-primary shadow w-full">
+                <button onClick={handleGoogle} className="btn hover:btn-primary text-white font-medium border-primary shadow w-full">
                     <FcGoogle />
                     Signin with Google
                 </button>
