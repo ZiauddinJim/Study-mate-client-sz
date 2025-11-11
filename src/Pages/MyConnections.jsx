@@ -4,12 +4,16 @@ import { useEffect } from 'react';
 import useAuth from '../Hooks/useAuth';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 
 const MyConnections = () => {
     const Axios = useAxiosSecure()
     const { user } = useAuth()
     const [data, setData] = useState([])
     const modalRef = useRef(null);
+    const [updateData, setUpdateData] = useState([])
+    // const navigate = useNavigate()
+
     // console.log(user.email);
     useEffect(() => {
         Axios.get(`/my-connection?email=${user.email}`,)
@@ -51,10 +55,44 @@ const MyConnections = () => {
         // console.log(_id);
 
     }
-    const handleUpdate = () => {
+
+    const handleUpdate = (_id) => {
         modalRef.current.showModal()
+        // console.log(_id);
+        // console.log(data);
+        const presentData = data.find(currentData => currentData._id === _id)
+        // console.log(presentData);
+        setUpdateData(presentData)
+
+
     }
 
+    const handleSubmitUpdate = (e) => {
+        const form = e.target;
+        const updatePartner = {
+            // name: form.name.value,
+            // ProfileImage: form.ProfileImage.value,
+            subject: form.subject.value,
+            studyMode: form.studyMode.value,
+            availabilityTime: form.availabilityTime.value,
+            // location: form.location.value,
+            experienceLevel: form.experienceLevel.value,
+            rating: Number(form.rating.value),
+            // partnerCount: Number(form.partnerCount.value),
+            // email: form.email.value,
+        }
+        // console.log(updatePartner);
+        Axios.patch(`/connection/${updateData._id}`, updatePartner)
+            .then(response => {
+                console.log(response.data);
+                modalRef.current.close();
+                // navigate("/myConnection")
+                // Axios.get(`/my-connection?email=${user.email}`,)
+                //     .then(data => {
+                //         setData(data.data)
+                //     })
+            })
+    }
 
     return (
         <div className='my-10'>
@@ -113,7 +151,7 @@ const MyConnections = () => {
                     {/* Open the modal using document.getElementById('ID').showModal() method */}
                     <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
                         <div className="modal-box">
-                            <form className="space-y-6" aria-label="Create partner profile form">
+                            <form onSubmit={handleSubmitUpdate} className="space-y-6" aria-label="Create partner profile form">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                                     {/* Full Name */}
@@ -121,7 +159,7 @@ const MyConnections = () => {
                                         <label className="label">
                                             <span className="label-text font-semibold">Full Name</span>
                                         </label>
-                                        <input name="name" required type="text" placeholder="Your partner name" className="input focus:border-secondary outline-none w-full" />
+                                        <input name="name" type="text" defaultValue={updateData.name} readOnly className="input focus:border-secondary outline-none w-full bg-base-200" />
                                     </div>
 
                                     {/* Email read-only */}
@@ -129,7 +167,7 @@ const MyConnections = () => {
                                         <label className="label">
                                             <span className="label-text font-semibold">Email</span>
                                         </label>
-                                        <input type="email" name="email" defaultValue={user.email} placeholder="xyz@example.com" readOnly className="input focus:border-secondary outline-none w-full bg-base-200" />
+                                        <input type="email" name="email" defaultValue={updateData.email} readOnly className="input focus:border-secondary outline-none w-full bg-base-200" />
                                     </div>
 
                                     {/* Profile Image URL */}
@@ -137,7 +175,7 @@ const MyConnections = () => {
                                         <label className="label">
                                             <span className="label-text font-semibold">Profile Image URL</span>
                                         </label>
-                                        <input type="url" required name="ProfileImage" placeholder="https://example.com/avatar.jpg" className="input focus:border-secondary outline-none w-full" />
+                                        <input type="url" name="ProfileImage" defaultValue={updateData.ProfileImage} readOnly className="input focus:border-secondary outline-none w-full bg-base-200" />
                                     </div>
 
                                     {/* Subject */}
@@ -145,7 +183,7 @@ const MyConnections = () => {
                                         <label className="label">
                                             <span className="label-text font-semibold">Subject</span>
                                         </label>
-                                        <input name="subject" required type="text" placeholder="e.g., English, Math, Programming" className="input focus:border-secondary outline-none w-full" />
+                                        <input name="subject" type="text" defaultValue={updateData.subject} className="input focus:border-secondary outline-none w-full" />
                                     </div>
 
                                     {/* Study Mode */}
@@ -153,8 +191,7 @@ const MyConnections = () => {
                                         <label className="label">
                                             <span className="label-text font-semibold">Study Mode</span>
                                         </label>
-                                        <select name="studyMode" defaultValue="" className="select select-bordered w-full">
-                                            <option disabled selected>Choose study mode</option>
+                                        <select name="studyMode" defaultValue={updateData.studyMode} className="select select-bordered w-full">
                                             <option>Online</option>
                                             <option>Offline</option>
                                         </select>
@@ -165,7 +202,7 @@ const MyConnections = () => {
                                         <label className="label">
                                             <span className="label-text font-semibold">Availability Time</span>
                                         </label>
-                                        <input name="availabilityTime" required type="text" placeholder="e.g., Evening 6-9 PM" className="input focus:border-secondary outline-none w-full" />
+                                        <input name="availabilityTime" type="text" defaultValue={updateData.availabilityTime} className="input focus:border-secondary outline-none w-full" />
                                     </div>
 
                                     {/* Location */}
@@ -173,7 +210,7 @@ const MyConnections = () => {
                                         <label className="label">
                                             <span className="label-text font-semibold">Location</span>
                                         </label>
-                                        <input name="location" type="text" required placeholder="City, area, or preferred location" className="input focus:border-secondary outline-none w-full" />
+                                        <input name="location" type="text" defaultValue={updateData.location} readOnly className="input focus:border-secondary outline-none w-full bg-base-200" />
                                     </div>
 
                                     {/* Experience Level */}
@@ -182,7 +219,6 @@ const MyConnections = () => {
                                             <span className="label-text font-semibold">Experience Level</span>
                                         </label>
                                         <select name="experienceLevel" defaultValue="" className="select select-bordered w-full">
-                                            <option disabled selected>Select experience</option>
                                             <option>Beginner</option>
                                             <option>Intermediate</option>
                                             <option>Expert</option>
@@ -194,16 +230,16 @@ const MyConnections = () => {
                                         <label className="label">
                                             <span className="label-text font-semibold">Rating</span>
                                         </label>
-                                        <input name="rating" required type="number" min="0" max="5" step="1" placeholder="0 - 5" className="input focus:border-secondary outline-none w-full" />
+                                        <input name="rating" type="number" min="0" max="5" step="1" defaultValue={updateData.rating} className="input focus:border-secondary outline-none w-full" />
                                     </div>
 
                                     {/* Partner Count */}
-                                    <div>
+                                    {/* <div>
                                         <label className="label">
                                             <span className="label-text font-semibold">Partner / Connections Count</span>
                                         </label>
-                                        <input name="partnerCount" type="number" defaultValue={0} readOnly className="input focus:border-secondary outline-none w-full" />
-                                    </div>
+                                        <input name="partnerCount" type="number" defaultValue={updateData.partnerCount} readOnly className="input focus:border-secondary outline-none w-full bg-base-200" />
+                                    </div> */}
 
                                 </div>
 
@@ -216,7 +252,7 @@ const MyConnections = () => {
                             <div className="modal-action">
                                 <form method="dialog">
                                     {/* if there is a button in form, it will close the modal */}
-                                    <button className="btn">Close</button>
+                                    <button className="btn btn-secondary">Close</button>
                                 </form>
                             </div>
                         </div>

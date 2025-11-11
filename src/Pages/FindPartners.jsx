@@ -39,14 +39,14 @@ const FindPartners = () => {
             const result = await Axios.get("/experienceHigh");
             setData(result.data);
         }
-        // else if (value === "rating") {
-        //     const result = await Axios.get("/rating");
-        //     setData(result.data);
-        // }
-        // else if (value === "name") {
-        //     const result = await Axios.get("/name");
-        //     setData(result.data);
-        // }
+        else if (value === "rating") {
+            const result = await Axios.get("/rating");
+            setData(result.data);
+        }
+        else if (value === "name") {
+            const result = await Axios.get("/name");
+            setData(result.data);
+        }
     };
 
     const handleSearch = async (e) => {
@@ -76,10 +76,10 @@ const FindPartners = () => {
                     <div className="w-full sm:w-auto">
                         <select value={sortType} onChange={handleSort} className="select select-bordered w-full sm:w-56">
                             <option disabled value="">Sort by Experience</option>
-                            {/* <option value="rating">Rating (5-1)</option> */}
+                            <option value="rating">Rating (5-1)</option>
                             <option value="experience-low">Experience (low - high)</option>
                             <option value="experience-high">Experience (high - low)</option>
-                            {/* <option value="name">Name (A-Z)</option> */}
+                            <option value="name">Name (A-Z)</option>
                         </select>
                     </div>
 
