@@ -36,11 +36,16 @@ const PartnerDetails = () => {
             ProfileImage, name, email,
             rating, subject, availabilityTime,
             experienceLevel, location,
-            partnerCount, studyMode, connectionBy: user.email
+            partnerCount, studyMode, connectionBy: user.email, partnerId: _id
         })
             .then(data => {
-                console.log(data.data);
+                // console.log(data.data);
                 if (data.data.insertedId) {
+                    AxiosSecure.patch(`/partner-count/${_id}`)
+                        .then(data => {
+                            console.log(data.data);
+                            setRefetch(!refetch)
+                        })
                     Swal.fire({
                         position: "center",
                         icon: "success",
@@ -58,11 +63,7 @@ const PartnerDetails = () => {
                 });
             })
 
-        Axios.patch(`/partner-count/${_id}`)
-            .then(data => {
-                console.log(data.data);
-                setRefetch(!refetch)
-            })
+
     }
 
     return (
