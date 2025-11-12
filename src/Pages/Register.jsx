@@ -85,6 +85,7 @@ const Register = () => {
     }
     return (
         <div className='flex flex-col justify-center items-center mb-20'>
+            <title>Register | Study Mate</title>
             <div className="md:max-w-md w-full px-4 py-4">
                 <form onSubmit={handleRegister}>
                     {/* Top */}

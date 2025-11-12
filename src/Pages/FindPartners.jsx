@@ -76,6 +76,7 @@ const FindPartners = () => {
 
     return (
         <div className="mt-27 mb-24 ">
+            <title>Find Partner | Study Mate</title>
             <Container>
                 {/* Heading */}
                 <div className="flex justify-center text-center">

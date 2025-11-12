@@ -40,7 +40,7 @@ const PartnerDetails = () => {
                 if (data.data.insertedId) {
                     AxiosSecure.patch(`/partner-count/${_id}`)
                         .then(data => {
-                            console.log(data.data);
+                            // console.log(data.data);
                             setRefetch(!refetch)
                             navigate("/myConnection")
                         })
@@ -72,6 +72,7 @@ const PartnerDetails = () => {
 
     return (
         <div className="min-h-[60vh] mb-10 mt-27 partner-details flex justify-center items-center p-4">
+            <title>Partner Details | Study Mate</title>
             <div className="max-w-3xl w-full bg-base-100 shadow-xl rounded-2xl overflow-hidden">
                 <div className="flex flex-col md:flex-row">
                     {/* Left Section: Image */}

@@ -5,6 +5,7 @@ import useAuth from '../Hooks/useAuth';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { FaUsers } from 'react-icons/fa';
+import TextType from '../Components/CreateProfile/TextType';
 // import { useNavigate } from 'react-router';
 
 const MyConnections = () => {
@@ -43,7 +44,7 @@ const MyConnections = () => {
             if (result.isConfirmed) {
                 Axios.delete(`/connection/${_id}`)
                     .then(dataD => {
-                        console.log(dataD.data);
+                        // console.log(dataD.data);
                         if (dataD.data.deletedCount) {
                             Swal.fire({
                                 title: "Deleted!",
@@ -74,35 +75,61 @@ const MyConnections = () => {
     const handleSubmitUpdate = (e) => {
         const form = e.target;
         const updatePartner = {
-            // name: form.name.value,
-            // ProfileImage: form.ProfileImage.value,
             subject: form.subject.value,
             studyMode: form.studyMode.value,
             availabilityTime: form.availabilityTime.value,
-            // location: form.location.value,
             experienceLevel: form.experienceLevel.value,
             rating: Number(form.rating.value),
-            // partnerCount: Number(form.partnerCount.value),
-            // email: form.email.value,
+
         }
         // console.log(updatePartner);
         Axios.patch(`/connection/${updateData._id}`, updatePartner)
-            .then(response => {
-                console.log(response.data);
+            .then((response) => {
+                // console.log(response.data);
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Partner updated successfully!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                setData(previousData =>
+                    previousData.map(item =>
+                        (item._id === updateData._id) ? { ...item, ...updatePartner } : item
+                    )
+                );
                 modalRef.current.close();
-                // navigate("/myConnection")
-                // Axios.get(`/my-connection?email=${user.email}`,)
-                //     .then(data => {
-                //         setData(data.data)
-                //     })
             })
+            .catch((error) => {
+                console.error(error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Update Failed!",
+                    text:
+                        error.response?.data?.message ||
+                        "Something went wrong while updating the partner. Please try again.",
+                    confirmButtonColor: "#9333EA",
+                });
+            });
+
     }
     if (loading) return <Spinner />;
 
     return (
         <div className='mb-10 mt-27'>
+            <title>My Container | Study Mate</title>
             <Container>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto ">
+                    {/* Heading */}
+                    <div className="flex justify-center text-center mb-10">
+                        <TextType
+                            className="text-3xl sm:text-4xl font-extrabold text-gradient bg-clip-text text-transparent"
+                            text={["My Connection Partner", "My Connection Partner"]}
+                            typingSpeed={75}
+                            pauseDuration={7000}
+                            showCursor={true}
+                        />
+                    </div>
                     <table className="table">
                         {/* head */}
                         <thead>

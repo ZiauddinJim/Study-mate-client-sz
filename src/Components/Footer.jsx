@@ -6,8 +6,21 @@ import { FaFacebook } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
+import useAuth from '../Hooks/useAuth';
 
 const Footer = () => {
+    const { user } = useAuth()
+    const links = <>
+        <li className='hover:underline'><Link to={"/"}>Home</Link></li>
+        <li className='hover:underline'><Link to={"findPartners"}>Find Partners</Link></li>
+        {
+            user &&
+            <>
+                <li className='hover:underline'><Link to={"/createPartner"}>Create Partner Profile</Link></li>
+                <li className='hover:underline'><Link to={"/myConnection"}>My Connection</Link></li>
+            </>
+        }
+    </>
     return (
         <div>
             <div className='bg-base-200'>
@@ -17,17 +30,15 @@ const Footer = () => {
                             <img className='w-10 h-10' src={logo} alt="" />
                             <span className='text-gradient font-bold'>Study Mate</span>
                         </Link>
-                        <p>StudyMate is an online learning <br /> platform that helps students collaborate, <br />share resources, and study more effectively.</p>
+                        <p className='text-accent'>StudyMate is an online learning <br /> platform that helps students collaborate, <br />share resources, and study more effectively.</p>
                     </aside>
                     <nav>
                         <h6 className="footer-title">Services</h6>
-                        <a className="link link-hover">Partners</a>
+                        <ul className='space-y-1'>
+                            {links}
+                        </ul>
                     </nav>
-                    <nav>
-                        <h6 className="footer-title">Company</h6>
-                        <a className="link link-hover">About us</a>
-                        <a className="link link-hover">Contact</a>
-                    </nav>
+
                     <nav>
                         <h6 className="footer-title">Social</h6>
                         <div className='grid grid-flow-col gap-4'>

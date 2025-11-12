@@ -42,6 +42,7 @@ const ForgetPassword = () => {
         <div
             className="flex h-auto min-h-screen items-center justify-center overflow-x-hidden bg-[url('https://cdn.flyonui.com/fy-assets/blocks/marketing-ui/auth/auth-background-2.png')] bg-cover bg-center bg-no-repeat py-10"
         >
+            <title>Forget Password | Study Mate</title>
             <div className="flex items-center justify-center px-4 sm:px-6 lg:px-8">
                 <div className="bg-base-100 shadow-base-300/20 z-1 w-full space-y-6 rounded-xl p-6 shadow-md sm:max-w-md lg:p-8">
 

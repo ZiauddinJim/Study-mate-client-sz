@@ -3,6 +3,7 @@ import TextType from "../CreateProfile/TextType";
 import review3 from "../../assets/review3.jpg"
 import review2 from "../../assets/review2.jpg"
 import review1 from "../../assets/review1.jpeg"
+import Marquee from "react-fast-marquee";
 
 const Testimonials = () => {
     const reviews = [
@@ -29,6 +30,9 @@ const Testimonials = () => {
         },
     ];
 
+    // Duplicate reviews to ensure smooth scrolling
+    const duplicatedReviews = [...reviews, ...reviews];
+
     return (
         <section className="py-20">
             <div className="max-w-6xl mx-auto px-6">
@@ -45,13 +49,18 @@ const Testimonials = () => {
                     />
                 </div>
 
-                <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {reviews.map((r, i) => (
+                <Marquee
+                    pauseOnHover={true}
+                    speed={40}
+                    gradient={false}
+                >
+                    {duplicatedReviews.map((r, i) => (
                         <div
                             key={i}
-                            className="p-6 rounded-2xl shadow-md hover:shadow-xl hover:shadow-secondary/20 
-                            transition duration-300 flex flex-col items-center text-center group 
-                            border border-primary hover:border-secondary"
+                            className="my-5 p-6 rounded-2xl shadow-md hover:shadow-xl hover:shadow-secondary/20 
+                            transition-all duration-500 flex flex-col items-center text-center group 
+                            border border-primary hover:border-secondary mx-4 w-80
+                            hover:scale-105 hover:-translate-y-2"
                         >
                             {/* Avatar */}
                             <img
@@ -62,23 +71,23 @@ const Testimonials = () => {
 
                             {/* Stars */}
                             <div className="flex mb-4">
-                                {[...Array(r.rating)].map((_, i) => (
+                                {[...Array(r.rating)].map((_, starIndex) => (
                                     <FaStar
-                                        key={i}
+                                        key={starIndex}
                                         className="text-primary group-hover:text-secondary"
                                     />
                                 ))}
                             </div>
 
                             {/* Comment */}
-                            <p className=" italic mb-4 leading-relaxed ">"{r.comment}"</p>
+                            <p className="italic mb-4 leading-relaxed">"{r.comment}"</p>
 
                             {/* Name & Subject */}
                             <h3 className="font-semibold text-primary group-hover:text-secondary">{r.name}</h3>
-                            <p className=" text-sm text-accent">{r.subject} Student</p>
+                            <p className="text-sm text-accent">{r.subject} Student</p>
                         </div>
                     ))}
-                </div>
+                </Marquee>
             </div>
         </section>
     );

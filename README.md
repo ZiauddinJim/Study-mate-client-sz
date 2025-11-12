@@ -70,35 +70,11 @@ Study Mate is a comprehensive platform designed to help students find and connec
 git clone https://github.com/ZiauddinJim/Study-mate-client-sz
 
 # Navigate to client directory
-cd study-mate/client
+cd study-mate
 
 # Install dependencies
 npm install
-
-# Create .env file and add your environment variables
-VITE_FIREBASE_API_KEY=your_api_key
-VITE_API_URL=http://localhost:3000
 
 # Start development server
 npm run dev
-```
-
-### Server Setup
-```bash
-# Clone the repository
-git clone https://github.com/ZiauddinJim/Study-mate-server-sz
-
-# Navigate to server directory
-cd study-mate/server
-
-# Install dependencies
-npm install
-
-# Create .env file and add your environment variables
-MONGODB_URI=your_mongodb_connection_string
-FIREBASE_ADMIN_SDK=your_firebase_admin_credentials
-PORT=5000
-
-# Start server
-npm start
 ```

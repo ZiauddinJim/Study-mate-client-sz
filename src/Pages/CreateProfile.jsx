@@ -1,5 +1,5 @@
 import React, { } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import TextType from '../Components/CreateProfile/TextType';
 import useAuth from "../Hooks/useAuth";
 import Spinner from "../Spinner/Spinner";
@@ -10,6 +10,7 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 const CreateProfile = () => {
     const { loading, user } = useAuth()
     const Axios = useAxiosSecure();
+    const navigate = useNavigate()
     if (loading) return <Spinner />;
 
     const handleSubmit = (e) => {
@@ -29,23 +30,36 @@ const CreateProfile = () => {
         }
         // console.log(partner);
         Axios.post("/partner", partner)
-            .then(data => {
-                console.log(data.data);
+            .then((data) => {
+                // console.log(data.data);
                 if (data.data.insertedId) {
                     Swal.fire({
                         position: "center",
                         icon: "success",
                         title: "Your Partner has been created",
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 1500,
                     });
+                    navigate("/findPartners");
                     e.target.reset();
                 }
-            })
+            }).catch((error) => {
+                console.error(error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text:
+                        error.response?.data?.message ||
+                        "Something went wrong! Please try again.",
+                    confirmButtonColor: "#9333EA",
+                });
+            });
+
 
     }
     return (
         <div className="mb-12 mt-27 px-4">
+            <title>Crate Partner | Study Mate</title>
             <div className="max-w-4xl mx-auto">
                 {/* Header */}
                 <div className="flex flex-col items-start gap-4 mb-6">
@@ -81,7 +95,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Email</span>
                                     </label>
-                                    <input type="email" name="email" defaultValue={user.email} placeholder="xyz@example.com" readOnly className="input focus:border-secondary outline-none w-full bg-base-200" />
+                                    <input type="email" name="email" required defaultValue={user.email} readOnly className="input focus:border-secondary outline-none w-full bg-base-200" />
                                 </div>
 
                                 {/* Profile Image URL */}
@@ -105,8 +119,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Study Mode</span>
                                     </label>
-                                    <select name="studyMode" defaultValue="" className="select select-bordered w-full">
-                                        <option disabled selected>Choose study mode</option>
+                                    <select name="studyMode" required defaultValue="" className="select select-bordered w-full">
                                         <option>Online</option>
                                         <option>Offline</option>
                                     </select>
@@ -134,7 +147,6 @@ const CreateProfile = () => {
                                         <span className="label-text font-semibold">Experience Level</span>
                                     </label>
                                     <select name="experienceLevel" defaultValue="" className="select select-bordered w-full">
-                                        <option disabled selected>Select experience</option>
                                         <option>Beginner</option>
                                         <option>Intermediate</option>
                                         <option>Expert</option>
@@ -154,7 +166,7 @@ const CreateProfile = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Partner / Connections Count</span>
                                     </label>
-                                    <input name="partnerCount" type="number" defaultValue={0} readOnly className="input focus:border-secondary outline-none w-full" />
+                                    <input name="partnerCount" required type="number" defaultValue={0} readOnly className="input focus:border-secondary bg-base-200 outline-none w-full" />
                                 </div>
 
                             </div>

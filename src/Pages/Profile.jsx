@@ -9,10 +9,10 @@ import toast from "react-hot-toast";
 
 const formatDisplayName = (name) => {
     return name
-        .split(' ')
-        .filter(word => word.trim().length > 0)
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-        .join(' ');
+        ?.split(' ')
+        ?.filter(word => word.trim().length > 0)
+        ?.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        ?.join(' ');
 }
 
 
@@ -33,6 +33,7 @@ const Profile = () => {
     }
     return (
         <div className="container mx-auto px-6 py-12 flex justify-center mt-27">
+            <title>User Profile | Study Mate</title>
             <div className="card lg:card-side bg-base-100 shadow-2xl max-w-4xl w-full overflow-hidden">
 
                 {/* Left side - quick actions */}

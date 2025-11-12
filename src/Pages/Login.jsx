@@ -91,6 +91,7 @@ const Login = () => {
 
     return (
         <Container className={'flex justify-center my-10'}>
+            <title>Login | Study Mate</title>
             <div className="md:max-w-md w-full px-4 py-4 ">
 
                 <form className=' flex flex-col justify-center' onSubmit={handleSignIn}>
