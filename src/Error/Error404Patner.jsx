@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import logo from "../assets/logo.png"
 
-const Error404 = () => {
+const Error404Partner = () => {
 
     return (
         <div className="min-h-screen my-20 flex items-center justify-center px-4 py-12">
@@ -18,10 +18,10 @@ const Error404 = () => {
                 {/* Error Message */}
                 <div className="space-y-4 mb-8">
                     <h2 className="text-3xl md:text-4xl font-bold">
-                        Oops! This Page cannot be found!
+                        Oops! This Partner details Page cannot be found!
                     </h2>
                     <p className="text-lg max-w-md mx-auto text-accent">
-                        It looks like you've entered the wrong place. Let's get you back to learning!
+                        It looks like you've entered the wrong partner details page. Let's get you back to learning!
                     </p>
                 </div>
 
@@ -54,4 +54,4 @@ const Error404 = () => {
     );
 };
 
-export default Error404;
+export default Error404Partner;

@@ -1,38 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { FaStar, FaMapMarkerAlt, FaUserFriends } from "react-icons/fa";
+import { FaStar, FaMapMarkerAlt, FaUserFriends, FaArrowLeft } from "react-icons/fa";
 import { MdOutlineSchool, MdAccessTime, MdOutlineWorkOutline, MdOnlinePrediction } from "react-icons/md";
-import useAxios from "../Hooks/useAxios";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import Error404Partner from "../Error/Error404Patner";
 
 const PartnerDetails = () => {
     const { id } = useParams()
-    const Axios = useAxios()
     const { user } = useAuth()
     const AxiosSecure = useAxiosSecure()
     const [refetch, setRefetch] = useState(false)
     // console.log(user.displayName);
     const [partner, setPartner] = useState([])
+    const [error, setError] = useState(null)
+    const navigate = useNavigate()
 
     useEffect(() => {
         AxiosSecure.get(`/partner/${id}`)
             .then(data => {
                 // console.log(data.data);
                 setPartner(data.data)
-            })
+            }).catch(error => setError(error))
     }, [AxiosSecure, id, refetch])
 
-    const { ProfileImage, name, email,
-        rating, subject, availabilityTime,
-        experienceLevel, location,
-        partnerCount, studyMode, _id } = partner
 
     const handleConnection = (e) => {
         e.preventDefault();
 
-        Axios.post("/connection", {
+        AxiosSecure.post("/connection", {
             ProfileImage, name, email,
             rating, subject, availabilityTime,
             experienceLevel, location,
@@ -45,6 +42,7 @@ const PartnerDetails = () => {
                         .then(data => {
                             console.log(data.data);
                             setRefetch(!refetch)
+                            navigate("/myConnection")
                         })
                     Swal.fire({
                         position: "center",
@@ -61,10 +59,16 @@ const PartnerDetails = () => {
                     title: "Oops...",
                     text: error.response?.data?.message || "Something went wrong! Please try again.",
                 });
+                navigate("/findPartners")
             })
-
-
     }
+    if (!partner || error) return <Error404Partner />
+    // console.log(partner);
+
+    const { ProfileImage, name, email,
+        rating, subject, availabilityTime,
+        experienceLevel, location,
+        partnerCount, studyMode, _id } = partner
 
     return (
         <div className="min-h-[60vh] mb-10 mt-27 partner-details flex justify-center items-center p-4">
