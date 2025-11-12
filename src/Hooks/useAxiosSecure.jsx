@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
 
 const instance = axios.create({
-    baseURL: 'http://localhost:3220',
+    baseURL: 'https://study-mate-server-sz.vercel.app',
 });
 
 const useAxiosSecure = () => {
