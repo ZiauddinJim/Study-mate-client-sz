@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import Banner from '../Components/Home/Banner';
-// import SplashCursor from '../Components/Home/SplashCursor'
+import SplashCursor from '../Components/Home/SplashCursor'
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import useAuth from '../Hooks/useAuth';
@@ -42,7 +42,7 @@ const Home = () => {
                     <Testimonials />
                 </div>
             </main>
-            {/* <SplashCursor /> */}
+            <SplashCursor />
         </>
     );
 };

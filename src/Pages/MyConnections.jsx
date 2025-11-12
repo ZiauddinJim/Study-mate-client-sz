@@ -9,7 +9,7 @@ import { FaUsers } from 'react-icons/fa';
 
 const MyConnections = () => {
     const Axios = useAxiosSecure()
-    const { user } = useAuth()
+    const { user, loading, setLoading } = useAuth()
     const [data, setData] = useState([])
     const modalRef = useRef(null);
     const [updateData, setUpdateData] = useState([])
@@ -21,8 +21,13 @@ const MyConnections = () => {
             .then(data => {
                 // console.log(data.data);
                 setData(data.data)
+            }).catch(error => {
+                console.error('Error fetching connections:', error);
             })
-    }, [Axios, user])
+            .finally(() => {
+                setLoading(false);
+            });
+    }, [Axios, user, setLoading])
 
     const handelDelete = (_id) => {
 
@@ -64,8 +69,6 @@ const MyConnections = () => {
         const presentData = data.find(currentData => currentData._id === _id)
         // console.log(presentData);
         setUpdateData(presentData)
-
-
     }
 
     const handleSubmitUpdate = (e) => {
@@ -94,6 +97,7 @@ const MyConnections = () => {
                 //     })
             })
     }
+    if (loading) return <Spinner />;
 
     return (
         <div className='mb-10 mt-27'>
