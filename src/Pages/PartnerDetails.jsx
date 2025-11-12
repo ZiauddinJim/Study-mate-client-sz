@@ -67,7 +67,7 @@ const PartnerDetails = () => {
     }
 
     return (
-        <div className="min-h-[60vh] my-10 partner-details flex justify-center items-center p-4">
+        <div className="min-h-[60vh] mb-10 mt-27 partner-details flex justify-center items-center p-4">
             <div className="max-w-3xl w-full bg-base-100 shadow-xl rounded-2xl overflow-hidden">
                 <div className="flex flex-col md:flex-row">
                     {/* Left Section: Image */}

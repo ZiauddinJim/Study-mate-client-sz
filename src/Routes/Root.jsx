@@ -63,13 +63,13 @@ const Root = createBrowserRouter([
                 element: <PrivateRoute>
                     <PartnerDetails />
                 </PrivateRoute>
-            },
-            {
-                path: "*",
-                Component: Error404
             }
 
         ]
+    },
+    {
+        path: "*",
+        Component: Error404
     }
 ])
 

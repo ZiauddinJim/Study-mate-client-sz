@@ -121,8 +121,8 @@ const Navbar = () => {
                                     <div className="divider my-0"></div>
 
                                     <div className="flex flex-col gap-2">
-                                        <Link to={"/profile"} className="btn btn-outline btn-success">Profile <CgProfile /></Link>
-                                        <Link className="btn btn-outline btn-error" onClick={handleLogout}>Logout <TbLogout2 /></Link>
+                                        <Link to={"/profile"} className="btn btn-outline btn-primary">Profile <CgProfile /></Link>
+                                        <Link className="btn btn-outline btn-secondary" onClick={handleLogout}>Logout <TbLogout2 /></Link>
                                     </div>
                                 </ul>
                             </div>

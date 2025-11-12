@@ -14,15 +14,20 @@ const FindPartners = () => {
     const [sortType, setSortType] = useState("");
 
     useEffect(() => {
-        Axios.get("/partner")
-            .then(data => setData(data.data));
-    }, [Axios]);
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const result = await Axios.get("/partner");
+                setData(result.data);
+            } catch (error) {
+                console.error("Error fetching partners:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    useEffect(() => {
-        setLoading(true);
-        const timer = setTimeout(() => setLoading(false), 500);
-        return () => clearTimeout(timer);
-    }, [setLoading]);
+        fetchData();
+    }, [Axios, setLoading]);
 
     if (loading) return <Spinner />;
 
@@ -31,33 +36,46 @@ const FindPartners = () => {
         const value = e.target.value;
         setSortType(value);
 
-        if (value === "experience-low") {
-            const result = await Axios.get("/experience");
+        setLoading(true);
+        try {
+            let result;
+            if (value === "experience-low") {
+                result = await Axios.get("/experience");
+            }
+            else if (value === "experience-high") {
+                result = await Axios.get("/experienceHigh");
+            }
+            else if (value === "rating") {
+                result = await Axios.get("/rating");
+            }
+            else if (value === "name") {
+                result = await Axios.get("/name");
+            }
             setData(result.data);
-        }
-        else if (value === "experience-high") {
-            const result = await Axios.get("/experienceHigh");
-            setData(result.data);
-        }
-        else if (value === "rating") {
-            const result = await Axios.get("/rating");
-            setData(result.data);
-        }
-        else if (value === "name") {
-            const result = await Axios.get("/name");
-            setData(result.data);
+        } catch (error) {
+            console.error("Error sorting data:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
     const handleSearch = async (e) => {
         e.preventDefault();
         const search = e.target.search.value.trim();
-        const result = await Axios.get(`/search?search=${search}`);
-        setData(result.data);
+
+        setLoading(true);
+        try {
+            const result = await Axios.get(`/search?search=${search}`);
+            setData(result.data);
+        } catch (error) {
+            console.error("Error searching:", error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
-        <div className="mt-10 mb-24 ">
+        <div className="mt-27 mb-24 ">
             <Container>
                 {/* Heading */}
                 <div className="flex justify-center text-center">

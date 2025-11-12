@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 import useAuth from '../Hooks/useAuth';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router';
+import { FaUsers } from 'react-icons/fa';
+// import { useNavigate } from 'react-router';
 
 const MyConnections = () => {
     const Axios = useAxiosSecure()
@@ -95,7 +96,7 @@ const MyConnections = () => {
     }
 
     return (
-        <div className='my-10'>
+        <div className='mb-10 mt-27'>
             <Container>
                 <div className="overflow-x-auto">
                     <table className="table">
@@ -111,46 +112,58 @@ const MyConnections = () => {
                         </thead>
                         <tbody>
                             {
-                                data.map((data, i) => {
-                                    const { _id, name, ProfileImage, subject, email, studyMode } = data
-                                    return (
-                                        <tr key={_id}>
-                                            <th className='text-primary'>{i + 1}</th>
-                                            <td>
-                                                <div className="flex items-center gap-3">
-                                                    <div className="avatar">
-                                                        <div className="mask mask-squircle h-12 w-12">
-                                                            <img
-                                                                src={ProfileImage}
-                                                                alt={name} />
+                                (data.length !== 0)
+                                    ? data.map((data, i) => {
+                                        const { _id, name, ProfileImage, subject, email, studyMode } = data
+                                        return (
+                                            <tr key={_id}>
+                                                <th className='text-primary'>{i + 1}</th>
+                                                <td>
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="avatar">
+                                                            <div className="mask mask-squircle h-12 w-12">
+                                                                <img
+                                                                    src={ProfileImage}
+                                                                    alt={name} />
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div className="font-bold">{name}</div>
+                                                            <div className="text-sm opacity-50">{email}</div>
                                                         </div>
                                                     </div>
-                                                    <div>
-                                                        <div className="font-bold">{name}</div>
-                                                        <div className="text-sm opacity-50">{email}</div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                {subject}
-                                                {/* <br />
-                                                <span className="badge badge-ghost badge-sm">{studyMode}</span> */}
-                                            </td>
-                                            <td>{studyMode}</td>
-                                            <th className='flex gap-2'>
-                                                <button onClick={() => handleUpdate(_id)} className="btn btn-outline hover:btn-primary hover:text-white btn-xs">Updata</button>
-                                                <button onClick={() => handelDelete(_id)} className="btn btn-outline hover:btn-secondary hover:text-white btn-xs">Delete</button>
-                                            </th>
-                                        </tr>
-                                    )
-                                })
-                            }
+                                                </td>
+                                                <td>
+                                                    {subject}
+                                                </td>
+                                                <td>{studyMode}</td>
+                                                <th className='flex gap-2'>
+                                                    <button onClick={() => handleUpdate(_id)} className="btn btn-outline hover:btn-primary hover:text-white btn-xs">Update</button>
+                                                    <button onClick={() => handelDelete(_id)} className="btn btn-outline hover:btn-secondary hover:text-white btn-xs">Delete</button>
+                                                </th>
+                                            </tr>
+                                        )
+                                    })
+                                    : <tr>
+                                        <td colSpan="5" className="text-center py-12">
+                                            <div className="flex flex-col items-center justify-center space-y-3">
+                                                <FaUsers size={120} className='text-accent' />
 
+                                                <div>
+                                                    <h3 className="font-semibold text-lg ">No Study Partners Found</h3>
+                                                    <p className="text-sm text-accent mt-1">Your connection list is currently empty</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            }
                         </tbody>
                     </table>
-                    {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+                    {/* Modal dialog */}
                     <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
                         <div className="modal-box">
+                            <h2 className='text-center text-2xl font-bold text-gradient my-5'>Update your partner Details</h2>
                             <form onSubmit={handleSubmitUpdate} className="space-y-6" aria-label="Create partner profile form">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
@@ -245,14 +258,14 @@ const MyConnections = () => {
 
                                 {/* Actions */}
                                 <div className="flex justify-end gap-3">
-                                    <button type="reset" className="btn btn-primary text-white">Reset</button>
+                                    <button type="reset" className="btn btn-outline text-black bg-white font-semibold rounded-lg border-2 border-gray-300 hover:border-indigo-500 hover:text-indigo-600 transition-all duration-200">Reset</button>
                                     <button type="submit" className="my-btn">Update</button>
                                 </div>
                             </form>
                             <div className="modal-action">
                                 <form method="dialog">
                                     {/* if there is a button in form, it will close the modal */}
-                                    <button className="btn btn-secondary">Close</button>
+                                    <button className="btn btn-outline bg-white text-black font-semibold rounded-lg border-2 border-gray-300 hover:border-indigo-500 hover:text-indigo-600 transition-all duration-200">Close</button>
                                 </form>
                             </div>
                         </div>
