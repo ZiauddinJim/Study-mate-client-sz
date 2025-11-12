@@ -1,3 +1,4 @@
+import { CgProfile } from "react-icons/cg";
 import userIcon from "../assets/user.png"
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
@@ -9,6 +10,7 @@ import useAuth from '../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import { TbLogout2 } from "react-icons/tb";
 
 const Navbar = () => {
     const { user, signOutFun } = useAuth()
@@ -53,10 +55,16 @@ const Navbar = () => {
         }
     </>
 
-
+    const formatDisplayName = (name) => {
+        return name
+            .split(' ')
+            .filter(word => word.trim().length > 0)
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(' ');
+    }
     return (
-        <div className="bg-base-100 shadow-lg sticky top-0 z-50">
-            <Container className={"navbar min-h-16"}>
+        <div className="navbar bg-base-100/30 shadow-lg fixed top-0 left-0 right-0 z-50 drop-shadow-xl backdrop-blur-lg">
+            <Container>
                 <div className="navbar-start" data-aos="fade-right">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" aria-label="Open menu" className="btn btn-ghost lg:hidden">
@@ -88,7 +96,7 @@ const Navbar = () => {
                     {/* Login toggle */}
                     {
                         user
-                            ? <div className="dropdown dropdown-end tooltip tooltip-left" data-tip={user.displayName}>
+                            ? <div className="dropdown dropdown-end tooltip tooltip-left" data-tip={formatDisplayName(user.displayName)}>
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                     <div className="w-10 rounded-full">
                                         <img src={user.photoURL || userIcon} alt="Profile Picture" />
@@ -96,9 +104,26 @@ const Navbar = () => {
                                 </div>
                                 <ul
                                     tabIndex="-1"
-                                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 shadow gap-2">
-                                    <Link to={"/profile"} className="btn btn-outline btn-primary">Profile</Link>
-                                    <Link className="btn btn-outline btn-primary" onClick={handleLogout}>Logout</Link>
+                                    className="menu menu-sm dropdown-content bg-base-100 rounded-2xl z-1 mt-3 w-64 shadow-2xl gap-3 p-4 border border-base-300">
+
+                                    <div className="flex flex-col items-center gap-3">
+                                        <div className="avatar">
+                                            <div className="w-24 rounded-full ring-4 ring-primary/50 shadow-xl">
+                                                <img src={user.photoURL || userIcon} alt="Profile Picture" />
+                                            </div>
+                                        </div>
+                                        <div className="text-center space-y-1">
+                                            <h3 className="font-bold text-xl text-base-content">{formatDisplayName(user.displayName)}</h3>
+                                            <p className="text-sm opacity-70 text-base-content">Welcome back!</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="divider my-0"></div>
+
+                                    <div className="flex flex-col gap-2">
+                                        <Link to={"/profile"} className="btn btn-outline btn-success">Profile <CgProfile /></Link>
+                                        <Link className="btn btn-outline btn-error" onClick={handleLogout}>Logout <TbLogout2 /></Link>
+                                    </div>
                                 </ul>
                             </div>
                             : <Link to={"/login"} className='my-btn'>Login</Link>

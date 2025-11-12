@@ -45,7 +45,7 @@ const CreateProfile = () => {
 
     }
     return (
-        <div className="my-12 px-4">
+        <div className="mb-12 mt-27 px-4">
             <div className="max-w-4xl mx-auto">
                 {/* Header */}
                 <div className="flex flex-col items-start gap-4 mb-6">

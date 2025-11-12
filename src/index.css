@@ -27,6 +27,9 @@ body {
   --color-secondary: #9333EA;
   --color-accent: gray;
 
+  .register-btn-text {
+    @apply text-black hover:text-white
+  }
 
 
   /* .partner-details {
@@ -40,6 +43,10 @@ body {
   --color-primary: #2663EB;
   --color-secondary: #9333EA;
   --color-accent: gray;
+
+  .register-btn-text {
+    @apply text-white hover:text-white
+  }
 
   /* .partner-details {
     background-color: rgba(0, 5, 109, 0.153);

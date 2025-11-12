@@ -49,7 +49,9 @@ const Testimonials = () => {
                     {reviews.map((r, i) => (
                         <div
                             key={i}
-                            className="p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 flex flex-col items-center text-center group border border-secondary"
+                            className="p-6 rounded-2xl shadow-md hover:shadow-xl hover:shadow-secondary/20 
+                            transition duration-300 flex flex-col items-center text-center group 
+                            border border-primary hover:border-secondary"
                         >
                             {/* Avatar */}
                             <img
@@ -69,11 +71,11 @@ const Testimonials = () => {
                             </div>
 
                             {/* Comment */}
-                            <p className=" italic mb-4 leading-relaxed">"{r.comment}"</p>
+                            <p className=" italic mb-4 leading-relaxed ">"{r.comment}"</p>
 
                             {/* Name & Subject */}
-                            <h3 className="font-semibold">{r.name}</h3>
-                            <p className=" text-sm">{r.subject} Student</p>
+                            <h3 className="font-semibold text-primary group-hover:text-secondary">{r.name}</h3>
+                            <p className=" text-sm text-accent">{r.subject} Student</p>
                         </div>
                     ))}
                 </div>

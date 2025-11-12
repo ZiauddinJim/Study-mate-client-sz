@@ -71,7 +71,7 @@ const HowItWorks = () => {
                                 {step.icon}
                             </div>
                             <h3 className="text-xl text-gradient font-semibold mb-2 ">{step.title}</h3>
-                            <p className="leading-relaxed">{step.desc}</p>
+                            <p className="leading-relaxed text-accent">{step.desc}</p>
                         </div>
                     ))}
                 </div>

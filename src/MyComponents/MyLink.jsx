@@ -4,7 +4,7 @@ import { NavLink } from "react-router";
 const MyLink = ({ to, className, children }) => {
     return (
         <NavLink to={to}
-            className={({ isActive }) => isActive ? "text-secondary border border-secondary" : `${className} hover:text-secondary`}>
+            className={({ isActive }) => isActive ? "my-btn" : `${className} hover:text-secondary`}>
             {children}
         </NavLink>
     );

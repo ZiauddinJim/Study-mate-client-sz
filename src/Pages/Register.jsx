@@ -15,7 +15,7 @@ const Register = () => {
     const location = useLocation()
     const { googleSignInFun, setLoading,
         createUserSignInWithEmailFun,
-        updateProfileFun, user } = useAuth();
+        updateProfileFun } = useAuth();
     const [show, setShow] = useState(false)
 
     // Password validation regex
@@ -144,7 +144,7 @@ const Register = () => {
 
                     {/* Button */}
                     <div className="mt-12">
-                        <button type="submit" className="btn hover:btn-primary text-white border-primary w-full shadow font-medium">
+                        <button type="submit" className="btn hover:btn-primary register-btn-text border-primary w-full shadow font-medium">
                             Register Now
                         </button>
                     </div>
@@ -157,7 +157,7 @@ const Register = () => {
                     <hr className="w-full border-slate-300" />
                 </div>
                 {/* Google */}
-                <button onClick={handleGoogle} className="btn hover:btn-primary text-white font-medium border-primary shadow w-full">
+                <button onClick={handleGoogle} className="btn hover:btn-primary register-btn-text font-medium border-primary shadow w-full">
                     <FcGoogle />
                     Signin with Google
                 </button>

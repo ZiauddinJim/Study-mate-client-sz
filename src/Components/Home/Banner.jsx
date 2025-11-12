@@ -30,7 +30,7 @@ const slides = [
 const Banner = () => {
     return (
         <Container>
-            <div className="w-full h-[70vh] relative mb-20">
+            <div className="w-full h-[70vh] relative mb-20 mt-17">
                 <Swiper
                     pagination={{ dynamicBullets: true }}
                     autoplay={{
@@ -52,7 +52,7 @@ const Banner = () => {
                                 />
 
                                 {/* Overlay with gradient */}
-                                <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent"></div>
+                                <div className="absolute inset-0 bg-linear-to-t from-black to-transparent"></div>
 
                                 {/* Text Content */}
                                 <div
@@ -61,7 +61,7 @@ const Banner = () => {
                                     <h2 className="text-3xl md:text-5xl font-bold mb-2">
                                         {slide.title}
                                     </h2>
-                                    <p className="text-lg md:text-xl">{slide.subtitle}</p>
+                                    <p className="text-lg md:text-xl text-accent">{slide.subtitle}</p>
                                 </div>
                             </div>
                         </SwiperSlide>
