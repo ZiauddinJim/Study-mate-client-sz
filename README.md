@@ -10,15 +10,15 @@ Study Mate is a comprehensive platform designed to help students find and connec
 
 ## Key Features
 
-- Personalized Profile Creation** - Create a detailed profile with your subjects, academic goals, study schedule, and preferences to help others find you as the perfect study partner.
+- **Personalized Profile Creation** - Create a detailed profile with your subjects, academic goals, study schedule, and preferences to help others find you as the perfect study partner.
 
-- Advanced Partner Discovery** - Browse through all registered study partners with powerful sort and search filters to find matches based on subjects, availability, location, and study preferences.
+- **Advanced Partner Discovery** - Browse through all registered study partners with powerful sort and search filters to find matches based on subjects, availability, location, and study preferences.
 
-- Top Partners Showcase** - View the most active and popular study partners directly on the home page, making it easier to connect with engaged and committed students.
+- **Top Partners Showcase** - View the most active and popular study partners directly on the home page, making it easier to connect with engaged and committed students.
 
-- Smart Connection Management** - Send connection requests to potential study partners with automatic partner count updates, and manage all your connections in a dedicated "My Connections" page for easy organization.
+- **Smart Connection Management** - Send connection requests to potential study partners with automatic partner count updates, and manage all your connections in a dedicated "My Connections" page for easy organization.
 
-- Manage & Update Connections** - Organize, delete, or update your connections to maintain effective study groups and plan collaborative study sessions seamlessly.
+- **Manage & Update Connections** - Organize, delete, or update your connections to maintain effective study groups and plan collaborative study sessions seamlessly.
 
 ---
 
@@ -43,23 +43,6 @@ Study Mate is a comprehensive platform designed to help students find and connec
 - **CORS** - Cross-origin resource sharing middleware
 - **dotenv** - Environment variable management
 - **Nodemon** - Development server with auto-restart
-
----
-
-## Application Routes & Pages
-
-### Public Routes
-- **`/`** - Home page featuring top study partners and platform overview
-- **`/findPartners`** - Browse all study partners with advanced search and filter options
-- **`/login`** - User authentication page
-- **`/register`** - New user registration
-- **`/forgetPassword`** - Password recovery page
-
-### Protected Routes (Authentication Required)
-- **`/createPartner`** - Create your study partner profile
-- **`/profile`** - View and manage your personal profile
-- **`/myConnection`** - View all your connected study partners
-- **`/partnerDetails/:id`** - View detailed information about a specific partner
 
 ---
 
