@@ -3,6 +3,7 @@ import TextType from '../CreateProfile/TextType';
 import Container from '../../MyComponents/Container';
 import TopPartnerCard from './TopPartnerCard';
 import useAxios from '../../Hooks/useAxios';
+import { Link } from 'react-router';
 
 
 const TopPartners = () => {
@@ -37,7 +38,7 @@ const TopPartners = () => {
 
             </div>
             <div className='flex justify-center pt-5'>
-                <div className='my-btn'>Find All Partners</div>
+                <Link to={"/findPartners"} className='my-btn'>Find All Partners</Link>
             </div>
         </Container>
     );
