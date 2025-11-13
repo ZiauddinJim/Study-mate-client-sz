@@ -90,10 +90,10 @@ const FindPartners = () => {
                 </div>
 
                 {/* Sort & Search Section */}
-                <div className="my-5 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-5">
+                <div className="my-5 flex flex-col  justify-center sm:flex-row sm:justify-between items-center gap-3 sm:gap-5">
                     {/* Sort */}
-                    <div className="w-full sm:w-auto">
-                        <select value={sortType} onChange={handleSort} className="select select-bordered w-full sm:w-56">
+                    <div className="w-full sm:w-auto flex justify-center">
+                        <select value={sortType} onChange={handleSort} className="select select-bordered w-56">
                             <option disabled value="">Sort by Experience</option>
                             <option value="rating">Rating (5-1)</option>
                             <option value="experience-low">Experience (low - high)</option>
@@ -103,7 +103,7 @@ const FindPartners = () => {
                     </div>
 
                     {/* Search */}
-                    <form onSubmit={handleSearch} className="join w-full sm:w-auto flex justify-center">
+                    <form onSubmit={handleSearch} className="join w-56 sm:w-auto flex justify-center">
                         <label className="input validator join-item grow w-fit sm:w-auto">
                             <input type="search" name="search" className="grow w-full" placeholder="Search" />
                         </label>
