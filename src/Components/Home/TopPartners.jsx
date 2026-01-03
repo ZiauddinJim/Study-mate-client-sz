@@ -18,7 +18,7 @@ const TopPartners = () => {
             })
     }, [Axios])
     return (
-        <Container className={'mb-20'}>
+        <Container className={'m-20'}>
             <div className='flex justify-center'>
                 <TextType
                     className="lg:text-4xl md:text-3xl text-2xl font-extrabold text-gradient mx-3 lg:mx-auto"

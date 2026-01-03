@@ -30,7 +30,7 @@ const slides = [
 const Banner = () => {
     return (
         <Container>
-            <div className="w-full h-[70vh] relative mb-20 mt-17">
+            <div className="w-full h-[70vh] relative mt-17">
                 <Swiper
                     pagination={{ dynamicBullets: true }}
                     autoplay={{
