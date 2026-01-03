@@ -89,6 +89,18 @@ const Login = () => {
             .finally(() => setLoading(false));
     }
 
+    const handleDemoLogin = () => {
+        signInFun("demo@user.com", "Demo123")
+            .then((userCredential) => {
+                const user = userCredential.user;
+                toast.success(`Welcome back, Demo User!`);
+                navigate(`${location.state ? location.state : '/'}`);
+            })
+            .catch((error) => {
+                toast.error("Demo login failed: " + error.message);
+            });
+    }
+
     return (
         <Container className={'flex justify-center my-10'}>
             <title>Login | Study Mate</title>
@@ -132,6 +144,13 @@ const Login = () => {
                     <div className="mt-12">
                         <button type="submit" className="btn hover:btn-primary hover:text-white border-primary w-full shadow font-medium">
                             Sign in
+                        </button>
+                    </div>
+
+                    {/* Demo Login */}
+                    <div className="mt-3">
+                        <button onClick={handleDemoLogin} type="button" className="btn hover:btn-primary hover:text-white border-primary w-full shadow font-medium">
+                            Demo User
                         </button>
                     </div>
                 </form>

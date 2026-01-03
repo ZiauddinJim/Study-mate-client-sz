@@ -58,9 +58,9 @@ const Home = () => {
                 <FAQ />
                 {/* 9. Newsletter Section */}
                 <Newsletter />
-               
+
             </main>
-            {/* <SplashCursor /> */}
+            <SplashCursor />
         </div>
     );
 };
