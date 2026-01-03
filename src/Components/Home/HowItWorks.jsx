@@ -47,7 +47,7 @@ const HowItWorks = () => {
 
     return (
         <div className="py-20">
-            <Container className="max-w-6xl mx-auto px-6">
+            <Container>
                 <div className='flex justify-center mb-10'>
                     <TextType
                         className="lg:text-4xl md:text-3xl text-2xl font-extrabold text-gradient mx-3 lg:mx-auto"

@@ -4,6 +4,7 @@ import review3 from "../../assets/review3.jpg"
 import review2 from "../../assets/review2.jpg"
 import review1 from "../../assets/review1.jpeg"
 import Marquee from "react-fast-marquee";
+import Container from "../../MyComponents/Container";
 
 const Testimonials = () => {
     const reviews = [
@@ -35,7 +36,7 @@ const Testimonials = () => {
 
     return (
         <section className="py-20">
-            <div className="max-w-6xl mx-auto px-6">
+            <Container>
                 <div className='flex justify-center mb-10'>
                     <TextType
                         className="lg:text-4xl md:text-3xl text-2xl font-extrabold text-gradient mx-3 lg:mx-auto"
@@ -88,7 +89,7 @@ const Testimonials = () => {
                         </div>
                     ))}
                 </Marquee>
-            </div>
+            </Container>
         </section>
     );
 };
