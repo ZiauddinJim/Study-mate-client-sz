@@ -12,6 +12,9 @@ import Profile from '../Pages/Profile';
 import ForgetPassword from '../Pages/ForgetPassword';
 import PartnerDetails from '../Pages/PartnerDetails';
 import Error404 from '../Error/Error404';
+import Blogs from '../Pages/Blogs';
+import ContactSupport from '../Pages/ContactSupport';
+import BlogDetails from '../Pages/BlogDetails';
 // import PartnerDetails from '../Pages/PartnerDetails';
 
 const Root = createBrowserRouter([
@@ -60,9 +63,20 @@ const Root = createBrowserRouter([
             },
             {
                 path: "/partnerDetails/:id",
-                element: <PrivateRoute>
-                    <PartnerDetails />
-                </PrivateRoute>
+                element: <PartnerDetails />
+
+            },
+            {
+                path: "/blogs",
+                Component: Blogs
+            },
+            {
+                path: "/blogs/:id",
+                Component: BlogDetails
+            },
+            {
+                path: "/contact",
+                Component: ContactSupport
             }
 
         ]

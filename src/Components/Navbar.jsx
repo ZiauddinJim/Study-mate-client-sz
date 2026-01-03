@@ -46,6 +46,8 @@ const Navbar = () => {
     const links = <>
         <li><MyLink to={"/"}>Home</MyLink></li>
         <li><MyLink to={"findPartners"}>Find Partners</MyLink></li>
+        <li><MyLink to={"blogs"}>Blogs</MyLink></li>
+        <li><MyLink to={"contact"}>Contact</MyLink></li>
         {
             user &&
             <>
