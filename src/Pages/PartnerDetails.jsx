@@ -62,7 +62,7 @@ const PartnerDetails = () => {
                 navigate("/findPartners")
             })
     }
-    if (!partner || error) return <Error404Partner />
+    // if (!partner || error) return <Error404Partner />
     // console.log(partner);
 
     const { ProfileImage, name, email,
