@@ -40,7 +40,7 @@ const PartnerDetails = () => {
                 cancelButtonText: "Cancel"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate("/login");  
+                    navigate("/login");
                 }
             });
 
@@ -58,7 +58,7 @@ const PartnerDetails = () => {
                             .then(data => {
                                 // console.log(data.data);
                                 setRefetch(!refetch)
-                                navigate("/myConnection")
+                                navigate("/dashboard/myConnection")
                             })
                         Swal.fire({
                             position: "center",

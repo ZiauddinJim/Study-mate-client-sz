@@ -51,8 +51,7 @@ const Navbar = () => {
         {
             user &&
             <>
-                <li><MyLink to={"/createPartner"}>Create Partner Profile</MyLink></li>
-                <li><MyLink to={"/myConnection"}>My Connection</MyLink></li>
+                <li><MyLink to={"/dashboard"}>Dashboard</MyLink></li>
             </>
         }
     </>
@@ -123,7 +122,8 @@ const Navbar = () => {
                                     <div className="divider my-0"></div>
 
                                     <div className="flex flex-col gap-2">
-                                        <Link to={"/profile"} className="btn btn-outline btn-primary">Profile <CgProfile /></Link>
+                                        <Link to={"/dashboard/profile"} className="btn btn-outline btn-primary">Profile <CgProfile /></Link>
+                                        <Link to={"/dashboard"} className="btn btn-outline btn-primary">Dashboard</Link>
                                         <Link className="btn btn-outline btn-secondary" onClick={handleLogout}>Logout <TbLogout2 /></Link>
                                     </div>
                                 </ul>

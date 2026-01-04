@@ -15,6 +15,8 @@ import Error404 from '../Error/Error404';
 import Blogs from '../Pages/Blogs';
 import ContactSupport from '../Pages/ContactSupport';
 import BlogDetails from '../Pages/BlogDetails';
+import DashboardLayout from '../Layouts/DashboardLayout';
+import DashboardHome from '../Pages/Dashboard/DashboardHome';
 // import PartnerDetails from '../Pages/PartnerDetails';
 
 const Root = createBrowserRouter([
@@ -44,27 +46,8 @@ const Root = createBrowserRouter([
                 Component: ForgetPassword,
             },
             {
-                path: "/myConnection",
-                element: <PrivateRoute>
-                    <MyConnections />
-                </PrivateRoute>
-            },
-            {
-                path: "/createPartner",
-                element: <PrivateRoute>
-                    <CreateProfile />
-                </PrivateRoute>
-            },
-            {
-                path: "/profile",
-                element: <PrivateRoute>
-                    <Profile />
-                </PrivateRoute>
-            },
-            {
                 path: "/partnerDetails/:id",
                 element: <PartnerDetails />
-
             },
             {
                 path: "/blogs",
@@ -78,7 +61,28 @@ const Root = createBrowserRouter([
                 path: "/contact",
                 Component: ContactSupport
             }
-
+        ]
+    },
+    {
+        path: "/dashboard",
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+        children: [
+            {
+                index: true,
+                Component: DashboardHome
+            },
+            {
+                path: "myConnection",
+                Component: MyConnections
+            },
+            {
+                path: "createPartner",
+                Component: CreateProfile
+            },
+            {
+                path: "profile",
+                Component: Profile
+            }
         ]
     },
     {
