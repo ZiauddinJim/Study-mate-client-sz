@@ -5,62 +5,79 @@ import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
-import Error404Partner from "../Error/Error404Patner";
+import useAxios from "../Hooks/useAxios";
 
 const PartnerDetails = () => {
     const { id } = useParams()
     const { user } = useAuth()
     const AxiosSecure = useAxiosSecure()
+    const Axios = useAxios()
     const [refetch, setRefetch] = useState(false)
     // console.log(user.displayName);
     const [partner, setPartner] = useState([])
-    const [error, setError] = useState(null)
     const navigate = useNavigate()
 
     useEffect(() => {
-        AxiosSecure.get(`/partner/${id}`)
+        Axios.get(`/partner/${id}`)
             .then(data => {
                 // console.log(data.data);
                 setPartner(data.data)
-            }).catch(error => setError(error))
-    }, [AxiosSecure, id, refetch])
+            })
+    }, [Axios, id])
 
 
     const handleConnection = (e) => {
         e.preventDefault();
-
-        AxiosSecure.post("/connection", {
-            ProfileImage, name, email,
-            rating, subject, availabilityTime,
-            experienceLevel, location,
-            partnerCount, studyMode, connectionBy: user.email, partnerId: _id
-        })
-            .then(data => {
-                // console.log(data.data);
-                if (data.data.insertedId) {
-                    AxiosSecure.patch(`/partner-count/${_id}`)
-                        .then(data => {
-                            // console.log(data.data);
-                            setRefetch(!refetch)
-                            navigate("/myConnection")
-                        })
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Your Connection has been created",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+        if (!user) {
+            return Swal.fire({
+                title: "Login Required",
+                text: "Please log in to continue accessing this feature.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Log In",
+                cancelButtonText: "Cancel"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate("/login");  
                 }
-            }).catch(error => {
-                console.error("Connection error:", error);
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: error.response?.data?.message || "Something went wrong! Please try again.",
-                });
-                navigate("/findPartners")
+            });
+
+        } else {
+            AxiosSecure.post("/connection", {
+                ProfileImage, name, email,
+                rating, subject, availabilityTime,
+                experienceLevel, location,
+                partnerCount, studyMode, connectionBy: user.email, partnerId: _id
             })
+                .then(data => {
+                    // console.log(data.data);
+                    if (data.data.insertedId) {
+                        AxiosSecure.patch(`/partner-count/${_id}`)
+                            .then(data => {
+                                // console.log(data.data);
+                                setRefetch(!refetch)
+                                navigate("/myConnection")
+                            })
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Your Connection has been created",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                }).catch(error => {
+                    console.error("Connection error:", error);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: error.response?.data?.message || "Something went wrong! Please try again.",
+                    });
+                    navigate("/findPartners")
+                })
+        }
     }
     // if (!partner || error) return <Error404Partner />
     // console.log(partner);
